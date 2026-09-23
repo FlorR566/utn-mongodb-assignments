@@ -1,3 +1,6 @@
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+
 # UTN - MongoDB & NoSQL Assignments
 
 Contiene los trabajos prácticos, ejercicios y scripts de consulta desarrollados en NoSQL / MongoDB para la materia de **Bases de Datos II**.
