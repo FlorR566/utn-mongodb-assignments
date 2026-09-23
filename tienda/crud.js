@@ -2,6 +2,44 @@ use("tienda");
 
 db.productos.drop(); // limpiamos la colección (util en pruebas repetibles)
 
+// CREACIÓN DE LA COLECCIÓN CON VALIDACIÓN (JSON Schema)
+db.createCollection("productos", {
+	validator: {
+		$jsonSchema: {
+			bsonType: "object",
+			required: ["nombre", "precio", "stock", "categoria"],
+			properties: {
+				nombre: {
+					bsonType: "string",
+					description: "El nombre es obligatorio y debe ser texto",
+				},
+				precio: {
+					bsonType: ["int", "double"], // Acepta enteros o decimales
+					minimum: 0,
+					description: "El precio debe ser un número mayor o igual a 0",
+				},
+				stock: {
+					bsonType: "int",
+					minimum: 0,
+					description: "El stock debe ser un entero mayor o igual a 0",
+				},
+				categoria: {
+					bsonType: "string",
+					description: "La categoría debe ser texto",
+				},
+				tags: {
+					bsonType: "array",
+					items: {
+						bsonType: "string",
+					},
+				},
+			},
+		},
+	},
+});
+
+// (A partir de acá MongoDB validará cada documento usando el JSON schema)
+
 // CREATE - Insertar datos:
 db.productos.insertOne({
 	nombre: "Laptop Dell XPS 15",

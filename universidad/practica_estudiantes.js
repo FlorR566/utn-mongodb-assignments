@@ -2,6 +2,39 @@ use("universidad"); // Selecciona la base de datos
 
 db.estudiantes.drop(); // Limpia la colección (opcional, útil para pruebas repetibles)
 
+// VALIDACIÓN CON JSON SCHEMA
+db.createCollection("estudiantes", {
+	validator: {
+		$jsonSchema: {
+			bsonType: "object",
+			required: ["legajo", "nombre", "edad", "carrera", "activo"],
+			properties: {
+				legajo: {
+					bsonType: "int",
+					description: "El legajo debe ser un número entero obligatorio",
+				},
+				nombre: {
+					bsonType: "string",
+					description: "El nombre debe ser un texto",
+				},
+				edad: {
+					bsonType: "int",
+					minimum: 17,
+					description: "La edad debe ser mayor o igual a 17",
+				},
+				carrera: {
+					bsonType: "string",
+					description: "La carrera debe ser texto",
+				},
+				activo: {
+					bsonType: "bool",
+					description: "El estado activo debe ser verdadero o falso",
+				},
+			},
+		},
+	},
+});
+
 // Inserción de documentos (Create)
 db.estudiantes.insertMany([
 	{
