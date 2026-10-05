@@ -141,10 +141,59 @@ db.libros.insertMany([
 	},
 ]);
 
-db.libros.find();
-
 // Insertar 3 préstamos
-// Consultar libros disponibles
-// Actualizar estado de un préstamo
-// Buscar préstamos atrasados
-// Agregar categoría a un libro con $addToSet
+db.prestamos.insertMany([
+	{
+		libro: {
+			titulo: "Cien Años de Soledad",
+			autor: "Gabriel García Márquez",
+			isbn: "978-0-307-47472-8",
+			anio_publicacion: NumberInt(1967),
+			disponible: true,
+			categorias: ["Ficción", "Realismo Mágico"],
+		},
+		usuario: {
+			nombre: "Soledad Perez",
+			email: "soledad@gmail.com",
+		},
+		fecha_prestamo: ISODate(), // fecha actual
+		fecha_devolucion: ISODate("2026-11-22"),
+		estado: "activo",
+	},
+	{
+		libro: {
+			titulo: "Ficciones",
+			autor: "Jorge Luis Borges",
+			isbn: "978-0-307-95092-5",
+			anio_publicacion: NumberInt(1944),
+			disponible: true,
+			categorias: ["Ficción", "Cuentos"],
+		},
+		usuario: {
+			nombre: "Soledad Perez",
+			email: "soledad@gmail.com",
+		},
+		fecha_prestamo: ISODate(), // fecha actual
+		fecha_devolucion: ISODate("2026-11-22"),
+		estado: "activo",
+	},
+	{
+		libro: {
+			titulo: "El Principito",
+			autor: "Antoine de Saint-Exupéry",
+			isbn: "978-0-15-601398-7",
+			anio_publicacion: NumberInt(1943),
+			disponible: true,
+			categorias: ["Infantil", "Filosofía"],
+		},
+		usuario: {
+			nombre: "Juan Gómez",
+			email: "juan@gmail.com",
+		},
+		fecha_prestamo: ISODate("2026-08-01"),
+		fecha_devolucion: ISODate("2026-08-15"),
+		estado: "retrasado",
+	},
+]);
+
+db.prestamos.find();
