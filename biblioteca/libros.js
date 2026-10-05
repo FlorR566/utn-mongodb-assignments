@@ -28,7 +28,8 @@ db.createCollection("libros", {
 				},
 				anio_publicacion: {
 					bsonType: "int",
-					maximum: 2026,
+					minumun: 1900,
+					maximum: 2025,
 					description:
 						"El anio_publicacion debe ser un entero menor o igual al año actual (años a.C. en negativo)",
 				},
