@@ -197,3 +197,19 @@ db.prestamos.insertMany([
 ]);
 
 db.prestamos.find();
+
+// Update disponibilidad libro del 1er prestamo:
+db.libros.updateOne(
+	{ _id: ObjectId("6ac3c251f33eb86d6772fc52") }, // filtro exacto "Cien Años de Soledad"
+	{ $set: { disponible: false } },
+);
+
+db.libros.find({ _id: ObjectId("6ac3c251f33eb86d6772fc52") });
+
+// libro del 2do prestamo:
+db.libros.updateOne(
+	{ _id: ObjectId("6ac3c251f33eb86d6772fc54") }, // filtro exacto "El Principito"
+	{ $set: { disponible: false } },
+);
+
+db.libros.find({ _id: ObjectId("6ac3c251f33eb86d6772fc54") });
