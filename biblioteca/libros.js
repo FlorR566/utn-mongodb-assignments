@@ -50,3 +50,55 @@ db.createCollection("libros", {
 		},
 	},
 });
+
+// CREACIÓN DE LA COLECCIÓN PRESTAMOS CON VALIDACIÓN (JSON Schema)
+db.createCollection("prestamos", {
+	validator: {
+		$jsonSchema: {
+			bsonType: "object",
+			required: ["libro", "usuario", "fecha_prestamo", "fecha_devolucion", "estado"],
+			properties: {
+				// Objeto anidado con info del libro
+				libro: {
+					bsonType: "object",
+					required: ["titulo", "autor", "isbn", "anio_publicacion", "disponible"],
+					properties: {
+						titulo: { bsonType: "string" },
+						autor: { bsonType: "string" },
+						isbn: { bsonType: "string" },
+						anio_publicacion: { bsonType: "int" },
+						disponible: { bsonType: "bool" },
+						categorias: { bsonType: "array" },
+					},
+				},
+				// Objeto anidado con info del libro
+				usuario: {
+					bsonType: "object",
+					required: ["nombre", "email"],
+					properties: {
+						nombre: { bsonType: "string" },
+						email: { bsonType: "string" },
+					},
+				},
+				edad: {
+					bsonType: "int",
+					minimum: 17,
+					description: "La edad debe ser mayor o igual a 17",
+				},
+				fecha_prestamo: {
+					bsonType: "date",
+					description: "Fecha de inicio del préstamo",
+				},
+				fecha_devolucion: {
+					bsonType: "date",
+					description: "Fecha pactada o real de devolución",
+				},
+				activo: {
+					bsonType: "string",
+					enum: ["activo", "devuelto", "retrasado"],
+					description: "El estado puede ser activo, devuelto o retrasado",
+				},
+			},
+		},
+	},
+});
