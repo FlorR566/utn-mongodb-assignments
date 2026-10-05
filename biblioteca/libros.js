@@ -23,8 +23,7 @@ db.createCollection("libros", {
 				isbn: {
 					bsonType: "string", // Un solo tipo no requiere ir dentro de un arreglo []
 					// Expresión regular que valida ISBN-10 o ISBN-13 (con o sin guiones)
-					pattern:
-						"^(?:ISBN(?:-10)?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$",
+					pattern: "^(?:97[89][ -]?)?(?:[0-9][ -]?){9}[0-9X]$",
 					description: "Debe ser un código ISBN válido (ISBN-10 o ISBN-13).",
 				},
 				anio_publicacion: {
@@ -102,3 +101,55 @@ db.createCollection("prestamos", {
 		},
 	},
 });
+
+// Insertar 5 libros
+db.libros.insertMany([
+	{
+		titulo: "El Señor de los Anillos",
+		autor: "J.R.R. Tolkien",
+		isbn: "978-0-261-10238-5",
+		anio_publicacion: NumberInt(1954),
+		disponible: true,
+		categorias: ["Fantasía", "Aventura"],
+	},
+	{
+		titulo: "Cien Años de Soledad",
+		autor: "Gabriel García Márquez",
+		isbn: "978-0-307-47472-8",
+		anio_publicacion: NumberInt(1967),
+		disponible: true,
+		categorias: ["Ficción", "Realismo Mágico"],
+	},
+	{
+		titulo: "1984",
+		autor: "George Orwell",
+		isbn: "978-0-451-52493-5",
+		anio_publicacion: NumberInt(1949),
+		disponible: false,
+		categorias: ["Distopía", "Ciencia Ficción"],
+	},
+	{
+		titulo: "El Principito",
+		autor: "Antoine de Saint-Exupéry",
+		isbn: "978-0-15-601398-7",
+		anio_publicacion: NumberInt(1943),
+		disponible: true,
+		categorias: ["Infantil", "Filosofía"],
+	},
+	{
+		titulo: "Ficciones",
+		autor: "Jorge Luis Borges",
+		isbn: "978-0-307-95092-5",
+		anio_publicacion: NumberInt(1944),
+		disponible: true,
+		categorias: ["Ficción", "Cuentos"],
+	},
+]);
+
+db.libros.find();
+
+// Insertar 3 préstamos
+// Consultar libros disponibles
+// Actualizar estado de un préstamo
+// Buscar préstamos atrasados
+// Agregar categoría a un libro con $addToSet
