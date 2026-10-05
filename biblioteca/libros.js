@@ -216,3 +216,11 @@ db.libros.find({ _id: ObjectId("6ac3c251f33eb86d6772fc54") });
 
 // Consultar libros disponibles
 db.libros.find({ disponible: true }); // solo hay dos disponibles
+
+// Actualizar estado de un préstamo
+db.prestamos.find({ _id: ObjectId("6ac3c252f33eb86d6772fc57") });
+
+db.prestamos.updateOne(
+	{ _id: ObjectId("6ac3c252f33eb86d6772fc57") },
+	{ $set: { estado: "devuelto" } },
+);
