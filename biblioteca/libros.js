@@ -224,3 +224,6 @@ db.prestamos.updateOne(
 	{ _id: ObjectId("6ac3c252f33eb86d6772fc57") },
 	{ $set: { estado: "devuelto" } },
 );
+
+// Buscar préstamos atrasados
+db.prestamos.find({ estado: "retrasado" });
