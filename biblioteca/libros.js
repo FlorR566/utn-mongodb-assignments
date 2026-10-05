@@ -227,3 +227,11 @@ db.prestamos.updateOne(
 
 // Buscar préstamos atrasados
 db.prestamos.find({ estado: "retrasado" });
+
+// Agregar categoría a un libro con $addToSet
+db.libros.updateOne(
+	{ _id: ObjectId("6ac3c251f33eb86d6772fc55") },
+	{ $addToSet: { categorias: "Relatos" } }, // agrega la categoria "Relatos", solo si esta no existe previamente en el arreglo
+);
+
+db.libros.find({ _id: ObjectId("6ac3c251f33eb86d6772fc55") });
