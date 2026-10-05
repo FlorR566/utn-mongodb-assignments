@@ -8,7 +8,7 @@ db.createCollection("libros", {
 	validator: {
 		$jsonSchema: {
 			bsonType: "object",
-			required: ["titulo", "autor", "isbn", "anio_publicacion", "disponible"],
+			required: ["titulo", "autor", "isbn", "anio_publicacion", "disponible", "categorias"],
 			properties: {
 				titulo: {
 					bsonType: "string",
@@ -60,7 +60,7 @@ db.createCollection("prestamos", {
 				// Objeto anidado con info del libro
 				libro: {
 					bsonType: "object",
-					required: ["titulo", "autor", "isbn", "anio_publicacion", "disponible"],
+					required: ["titulo", "autor", "isbn", "anio_publicacion", "disponible", "categorias"],
 					properties: {
 						titulo: { bsonType: "string" },
 						autor: { bsonType: "string" },
@@ -79,11 +79,6 @@ db.createCollection("prestamos", {
 						email: { bsonType: "string" },
 					},
 				},
-				edad: {
-					bsonType: "int",
-					minimum: 17,
-					description: "La edad debe ser mayor o igual a 17",
-				},
 				fecha_prestamo: {
 					bsonType: "date",
 					description: "Fecha de inicio del préstamo",
@@ -92,7 +87,7 @@ db.createCollection("prestamos", {
 					bsonType: "date",
 					description: "Fecha pactada o real de devolución",
 				},
-				activo: {
+				estado: {
 					bsonType: "string",
 					enum: ["activo", "devuelto", "retrasado"],
 					description: "El estado puede ser activo, devuelto o retrasado",
