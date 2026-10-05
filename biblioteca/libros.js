@@ -1,8 +1,9 @@
 use("biblioteca");
 
 db.libros.drop();
+db.prestamos.drop();
 
-// CREACIÓN DE LA COLECCIÓN CON VALIDACIÓN (JSON Schema)
+// CREACIÓN DE LA COLECCIÓN LIBROS CON VALIDACIÓN (JSON Schema)
 db.createCollection("libros", {
 	validator: {
 		$jsonSchema: {
@@ -28,7 +29,7 @@ db.createCollection("libros", {
 				},
 				anio_publicacion: {
 					bsonType: "int",
-					minumun: 1900,
+					minimum: 1900,
 					maximum: 2025,
 					description:
 						"El anio_publicacion debe ser un entero menor o igual al año actual (años a.C. en negativo)",
@@ -36,6 +37,14 @@ db.createCollection("libros", {
 				disponible: {
 					bsonType: "bool",
 					description: "disponible debe ser un booleano (true/false)",
+				},
+				categorias: {
+					bsonType: "array",
+					minItems: 1,
+					items: {
+						bsonType: "string",
+					},
+					description: "debe contener al enos una categoria en formato texto",
 				},
 			},
 		},
