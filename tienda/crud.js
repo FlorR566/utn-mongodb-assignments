@@ -69,7 +69,7 @@ db.productos.insertMany([
 		nombre: "Teclado Mecánico Keychron K2",
 		precio: 110,
 		stock: 25,
-		categoria: "Accesorios",
+		categoria: "Periféricos",
 		tags: ["periféricos", "teclados", "oficina"],
 	},
 	{
@@ -111,14 +111,14 @@ db.productos.insertMany([
 		nombre: "Placa de Video Nvidia RTX 4070",
 		precio: 650,
 		stock: 4,
-		categoria: "Componentes",
+		categoria: "Periféricos",
 		tags: ["hardware", "gaming", "placas de video"],
 	},
 	{
 		nombre: "Disco SSD NVMe 2TB Samsung 980 Pro",
 		precio: 160,
 		stock: 30,
-		categoria: "Componentes",
+		categoria: "Periféricos",
 		tags: ["almacenamiento", "hardware"],
 	},
 ]);
@@ -135,6 +135,10 @@ db.productos.countDocuments(); // 11 documentos
 db.productos.find().sort({ precio: -1 }).limit(3); // Devuelve los 3 productos más caros (orden descendente por precio)
 
 db.productos.find().sort({ precio: -1 }).limit(5); // Devuelve los 5 productos más caros (orden descendente por precio)
+
+// Filtro de búsqueda con operador lógico y relacional que devuelve todos los documentos de la colection "productos"
+// que cuenten con stock >= 10 y el campo categoria == "Periféricos".
+db.productos.find({ $and: [{ stock: { $gte: 10 } }, { categoria: { $in: ["Periféricos"] } }] });
 
 // UPDATE - Actualizar datos:
 // updateOne() --> Actualizar el PRIMERO que encuentra:
