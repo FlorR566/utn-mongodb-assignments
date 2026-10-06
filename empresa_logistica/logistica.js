@@ -30,3 +30,19 @@ db.createCollection("envios", {
 		},
 	},
 });
+
+// Insertar 12 documentos
+db.envios.insertMany([
+	{ numero_seguimiento: "ar1001", estado: "Entregado", ciudad_destino: "Buenos Aires", peso: 5.5 },
+	{ numero_seguimiento: "AR1002", estado: "En tránsito", ciudad_destino: "Córdoba", peso: 12 },
+	{ numero_seguimiento: "AR1003", estado: "Entregado", ciudad_destino: "Rosario", peso: 25.3 },
+	{ numero_seguimiento: "ar1004", estado: "Pendiente", ciudad_destino: "Buenos Aires", peso: 2.1 },
+	{ numero_seguimiento: "AR1005", estado: "Entregado", ciudad_destino: "Córdoba", peso: 30 },
+	{ numero_seguimiento: "AR1006", estado: "En tránsito", ciudad_destino: "Mendoza", peso: 8.7 },
+	{ numero_seguimiento: "ar1007", estado: "Entregado", ciudad_destino: "Buenos Aires", peso: 18 },
+	{ numero_seguimiento: "ar1008", estado: "Pendiente", ciudad_destino: "Rosario", peso: 21.5 },
+	{ numero_seguimiento: "AR1009", estado: "Entregado", ciudad_destino: "Mendoza", peso: 3.4 },
+	{ numero_seguimiento: "ar1010", estado: "En tránsito", ciudad_destino: "Córdoba", peso: 15 },
+	{ numero_seguimiento: "AR1011", estado: "Entregado", ciudad_destino: "Rosario", peso: 40 },
+	{ numero_seguimiento: "AR1012", estado: "Devuelto", ciudad_destino: "Buenos Aires", peso: 6 },
+]);
