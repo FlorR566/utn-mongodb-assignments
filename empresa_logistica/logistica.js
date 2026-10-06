@@ -75,3 +75,24 @@ db.envios.aggregate([
 //   { _id: 'Mendoza', total: 1 },
 //   { _id: 'Córdoba', total: 1 }
 // ]
+
+// Funcion matemática
+// calcula el peso total de todos los envíos de la colección
+db.envios.aggregate([{ $group: { _id: null, total: { $sum: "$peso" } } }]); // 187.5 kg
+
+// Pipeline usando $project
+// muestra numero_seguimiento en mayúsculas y estado
+db.envios.aggregate([
+	{
+		$project: {
+			numero_seguimiento: { $toUpper: "$numero_seguimiento" },
+			estado: { $toUpper: "$estado" },
+		},
+	},
+]);
+
+// $addFields con $cond para nuevo campo: "tipo_carga"
+// peso > 20 ? "Pesada" : "Ligera"
+db.envios.aggregate([
+	{ $addFields: { tipo_carga: { $cond: [{ $gt: ["$peso", 20] }, "Pesada", "Ligera"] } } },
+]);
