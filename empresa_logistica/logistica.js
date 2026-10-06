@@ -59,3 +59,19 @@ db.envios.find({ estado: "Entregado", ciudad_destino: "Rosario" }); // usa el in
 db.envios.find({ numero_seguimiento: "AR1004" }).explain("executionStats"); // explain()
 
 db.envios.stats(); // stats()
+
+// Agregacion
+// filtra envios con estado "Entregado"
+db.envios.aggregate([
+	{ $match: { estado: "Entregado" } }, // filtra
+	{ $group: { _id: "$ciudad_destino", total: { $sum: 1 } } }, // agrupa y cuenta el total por ciudad
+	{ $sort: { total: -1 } },
+]);
+
+// salida en consola:
+// [
+//   { _id: 'Rosario', total: 2 },
+//   { _id: 'Buenos Aires', total: 2 },
+//   { _id: 'Mendoza', total: 1 },
+//   { _id: 'Córdoba', total: 1 }
+// ]
