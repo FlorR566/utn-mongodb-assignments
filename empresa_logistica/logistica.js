@@ -46,3 +46,16 @@ db.envios.insertMany([
 	{ numero_seguimiento: "AR1011", estado: "Entregado", ciudad_destino: "Rosario", peso: 40 },
 	{ numero_seguimiento: "AR1012", estado: "Devuelto", ciudad_destino: "Buenos Aires", peso: 6 },
 ]);
+
+// Creación Indice Simple
+db.envios.createIndex({ numero_seguimiento: 1 }, { unique: true }); // crea el index -> numero_seguimiento_1
+db.envios.find({ numero_seguimiento: "AR1004" }); // usa el index
+
+// Creación Indice Compuesto
+db.envios.createIndex({ estado: 1, ciudad_destino: 1 }); // crea el index -> estado_1_ciudad_destino_1
+db.envios.find({ estado: "Entregado", ciudad_destino: "Rosario" }); // usa el index
+
+// Diagnótico y evaluación del rendimiento
+db.envios.find({ numero_seguimiento: "AR1004" }).explain("executionStats"); // explain()
+
+db.envios.stats(); // stats()
