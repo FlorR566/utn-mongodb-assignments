@@ -18,12 +18,19 @@ Contiene los trabajos prácticos, ejercicios y scripts de consulta desarrollados
 .
 ├── .gitignore
 ├── README.md
-├── guias_practicas/
-│   ├── 01_introduccion_crud.js
-│   └── 02_operadores_y_filtros.js
+├── backups_mongodb/
+│   └── logistica_db/
+│       ├── envios.bson
+│       ├── envios.metadata.json
+│       └── prelude.json
+├── biblioteca/
+│   └── libros.js
+├── empresa_logistica/
+│   └── logistica.js
+├── tienda/
+│   └── crud.js
 └── universidad/
-      ├── practica_estudiantes.js
-      └── consultas.js
+    └── practica_estudiantes.js
 ```
 
 ## Copias de seguridad (Backups)
