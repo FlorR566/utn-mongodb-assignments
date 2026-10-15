@@ -26,6 +26,24 @@ Contiene los trabajos prácticos, ejercicios y scripts de consulta desarrollados
       └── consultas.js
 ```
 
+## Copias de seguridad (Backups)
+
+### Generar un respaldo con `mongodump`
+
+Para realizar el backup en formato BSON de una DB específica (ej: `logistica_db`) en el directorio `./backups_mongodb`, ejecutá en la terminal:
+
+```
+mongodump --db logistica_db --out ./backups_mongodb
+```
+
+### Restaurar una copia de seguridad con `mongorestore`
+
+Para restaurar la DB a partir del backup generado, usar el siguiente comando:
+
+```
+mongorestore --db logistica_db ./backups_mongodb/logistica_db
+```
+
 ## Cómo ejecutar los scripts localmente
 
 ### 1. Iniciar el servicio de MongoDB
@@ -87,3 +105,5 @@ db.estudiantes.find();
 [x] Operadores de comparación/relacionales ($eq, $gt, $gte, $lt, $lte, $in, $nin)
 
 [x] Operadores lógicos ($and, $or, $not)
+
+[x] Estrategias de backup y restauración mediante mongodump y mongorestore
