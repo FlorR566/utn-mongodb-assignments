@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 
 const url = "mongodb://localhost:27017/"; // String de conexión local (sin autenticación)
 const client = new MongoClient(url);
-const dbName = "laboratorio"; // Nombre de la base de datos
+const dbName = "lab_driver"; // Nombre de la base de datos
 
 async function main() {
 	await client.connect();
