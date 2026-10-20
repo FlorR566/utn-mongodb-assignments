@@ -1,0 +1,16 @@
+{
+	"name": "laboratorio_driver",
+	"version": "1.0.0",
+	"description": "",
+	"main": "driver_lab.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Florencia Rodriguez",
+	"license": "ISC",
+	"type": "module",
+	"dependencies": {
+		"mongodb": "^7.7.0"
+	}
+}
