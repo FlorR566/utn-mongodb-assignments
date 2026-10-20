@@ -11,9 +11,9 @@ async function main() {
 	const collection = db.collection("documents");
 
 	const insertResult = await collection.insertMany([
-		{ 1: "Sensor de Humedad" },
-		{ 2: "Servo Motor" },
-		{ 3: "LED RGB" },
+		{ nombre: "Sensor de Humedad" },
+		{ nombre: "Servo Motor" },
+		{ nombre: "LED RGB" },
 	]);
 	console.log("Documentos insertados =>", insertResult);
 
